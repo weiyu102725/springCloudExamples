@@ -3,12 +3,8 @@ package com.example.springcloud.provider.service;
 import com.example.springcloud.provider.bean.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 
 /**
  * <pre>
