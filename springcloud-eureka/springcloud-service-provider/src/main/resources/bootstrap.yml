@@ -13,7 +13,7 @@ eureka:
       enabled: false
   instance:
     status-page-url-path: http://localhost:8761/actuator/info
-    health-check-url-path: http://localhost:8761/actuator//health
+    health-check-url-path: http://localhost:8761/actuator/health
     prefer-ip-address: true
     instance-id: eureka-service-provider8081
 
