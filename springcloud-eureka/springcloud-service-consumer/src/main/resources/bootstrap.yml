@@ -16,3 +16,5 @@ eureka:
     health-check-url-path: http://localhost:8761/actuator//health
     prefer-ip-address: true
     instance-id: eureka-service-consumer8082
+
+

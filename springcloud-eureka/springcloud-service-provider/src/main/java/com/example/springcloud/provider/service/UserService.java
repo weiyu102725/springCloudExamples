@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * <pre>
- *  UserService
+ *  UserService，查找github用户数据
  * </pre>
  *
  * <pre>
