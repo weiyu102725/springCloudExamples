@@ -26,8 +26,8 @@ public class SpringcloudServiceProviderApplication {
     @GetMapping({"/api/users/{username}"})
     @ResponseBody
     public User findUser(@PathVariable("username")String username) throws InterruptedException{
-        //User user=  userService.findUser(username);
-        User user = new User("nicky","http://smilenicky.blog.csdn.net");
+        User user=  userService.findUser(username);
+        //User user = new User("nicky","http://smilenicky.blog.csdn.net");
         return user;
     }
 }
