@@ -1,8 +1,9 @@
 package com.example.springcloud.ribbon.configuration;
 
-import com.netflix.client.config.IClientConfig;
-import com.netflix.loadbalancer.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.springcloud.ribbon.component.MyRule;
+import com.netflix.loadbalancer.IPing;
+import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.PingUrl;
 import org.springframework.cloud.netflix.ribbon.ZonePreferenceServerListFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,25 +20,15 @@ import org.springframework.context.annotation.Configuration;
  * </pre>
  */
 @Configuration(proxyBeanMethods = false)
-@ExcludeFromComponentScan
+@IgnoreComponentScan
 public class RibbonClientConfiguration {
 
 //    @Autowired
 //    IClientConfig config;
 
     @Bean
-    public IRule ribbonRule() {
-        return new BestAvailableRule();
-    }
-
-    @Bean
-    public IPing ribbonPing() {
-        return new PingUrl();
-    }
-
-//    @Bean
-    public ServerList<Server> ribbonServerList(IClientConfig config) {
-        return new DefaultRibbonClients.BazServiceList(config);
+    public IRule roundRobinRule() {
+        return new MyRule();
     }
 
     @Bean
@@ -46,4 +37,10 @@ public class RibbonClientConfiguration {
         filter.setZone("myTestZone");
         return filter;
     }
+
+    @Bean
+    public IPing ribbonPing() {
+        return new PingUrl();
+    }
+
 }
