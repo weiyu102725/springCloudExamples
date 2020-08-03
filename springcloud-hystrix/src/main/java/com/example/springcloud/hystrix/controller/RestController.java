@@ -1,8 +1,8 @@
 package com.example.springcloud.hystrix.controller;
 
 import com.example.springcloud.hystrix.bean.User;
+import com.example.springcloud.hystrix.component.FeignHystrixClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.ribbon.proxy.annotation.Hystrix;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +26,8 @@ public class RestController {
 
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
+    FeignHystrixClient feignHystrixClient;
 
     /**
      * @HystrixCommand注解指定异常时调用的方法
@@ -46,6 +48,12 @@ public class RestController {
         user.setName("defaultUser");
         user.setBlog("https://smilenicky.blog.csdn.net");
         return user;
+    }
+
+
+    @GetMapping("/feign/findUser/{username}")
+    public User findGithubUser(@PathVariable("username")String username){
+        return feignHystrixClient.findGithubUser(username);
     }
 
 }
