@@ -19,4 +19,9 @@ eureka:
 
 #feign:
 #  hystrix:
-#    enabled: false
+#    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,hystrix.stream
