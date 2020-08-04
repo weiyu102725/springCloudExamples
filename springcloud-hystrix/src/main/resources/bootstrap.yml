@@ -16,7 +16,8 @@ eureka:
     health-check-url-path: http://localhost:8761/actuator/health
     prefer-ip-address: false
     instance-id: ribbon-hystrix-service-consumer8082
-
+    metadata-map:
+      cluster: ribbon
 #feign:
 #  hystrix:
 #    enabled: true
@@ -25,3 +26,10 @@ management:
     web:
       exposure:
         include: info,health,hystrix.stream
+
+turbine:
+  aggregator:
+    cluster-config: ribbon
+  app-config: ribbon-hystrix-service-consumer,eureka-service-provider
+  cluster-name-expression:  metadata['cluster']
+#  cluster-name-expression: new String("default")
