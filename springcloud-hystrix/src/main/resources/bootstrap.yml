@@ -26,6 +26,10 @@ management:
     web:
       exposure:
         include: info,health,hystrix.stream
+  endpoint:
+   health:
+    show-details: always
+
 
 turbine:
   aggregator:
