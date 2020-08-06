@@ -23,9 +23,9 @@ zuul:
   # 配置前缀
   prefix: /api-gateway
   routes:
-    provider: # 可以自己定义
+    provider: # 路由标识，可以自己定义
       service-id: eureka-service-provider # 服务id
-      path: /provider/** # 要和routes.provider一致，进行映射
+      path: /provider/** # 映射的路径，一般和routes.provider一致
       url: http://localhost:8083 # 路由到的url
   host:
     # 配置连接超时时间
@@ -35,7 +35,11 @@ zuul:
   # 请求url编码
   decode-url: true
   # 查询字符串编码
-  force-original-query-string-encoding: true
+  force-original-query-string-encoding: false
+  # 配置过滤敏感的请求头信息，设置为空就不会过滤
+  sensitive-headers: Cookie,Set-Cookie,Authorization
+  # 重定向会添加host请求头
+  add-proxy-headers: true
 
 
 management:
